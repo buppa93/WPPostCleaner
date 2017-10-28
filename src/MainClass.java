@@ -126,7 +126,7 @@ public class MainClass
 			} 
 			catch (DatabaseConnectionException e) 
 			{
-				e.printStackTrace();
+				e.printStackTrace(); //TODO Debug mode... Remove this.
 				System.out.println("Fatal error: Failed to estabilish the connection with the origin database.");
 				System.exit(1);
 			}
@@ -138,7 +138,7 @@ public class MainClass
 			}
 			catch(DatabaseConnectionException e)
 			{
-				e.printStackTrace();
+				e.printStackTrace(); //TODO Debug mode... Remove this.
 				System.out.println("Fatal error: Failed to estabilish the connection with the destination database.");
 				System.exit(1);
 			}
@@ -186,19 +186,19 @@ public class MainClass
 					} 
 					catch (WriteWPUserException e) 
 					{
-						e.printStackTrace();
+						e.printStackTrace(); //TODO Debug mode... Remove this.
 						System.out.println("Error: Failed to write the destination users table.");
 					} 
 					catch (SQLException e) 
 					{
-						e.printStackTrace();
+						e.printStackTrace(); //TODO Debug mode... Remove this.
 						System.out.println("Error: Failed to write the destination users table.");
 					}
 				}
 			} 
 			catch (SQLException e) 
 			{
-				e.printStackTrace();
+				e.printStackTrace(); //TODO Debug mode... Remove this.
 				System.out.println("Error: Failed to read the origin users table.");
 			}
 			
@@ -248,19 +248,19 @@ public class MainClass
 					} 
 					catch (WriteWPUserMetaException e) 
 					{
-						e.printStackTrace();
+						e.printStackTrace(); //TODO Debug mode... Remove this.
 						System.out.println("Error: Failed to write the destination wp_usermeta table.");
 					} 
 					catch (SQLException e) 
 					{
-						e.printStackTrace();
+						e.printStackTrace(); //TODO Debug mode... Remove this.
 						System.out.println("Error: Failed to write the destination wp_usermeta table.");
 					}
 				}
 			} 
 			catch (SQLException e) 
 			{
-				e.printStackTrace();
+				e.printStackTrace(); //TODO Debug mode... Remove this.
 				System.out.println("Error: Failed to read the origin wp_usermeta table.");
 			}
 			
@@ -308,7 +308,7 @@ public class MainClass
 					}
 					catch (SQLException e) 
 					{
-						e.printStackTrace();
+						e.printStackTrace(); //TODO Debug mode... Remove this.
 						System.out.println("Error: Failed to write the destination wp_posts table.");
 					}
 					
@@ -316,7 +316,7 @@ public class MainClass
 			} 
 			catch (SQLException e) 
 			{
-				e.printStackTrace();
+				e.printStackTrace(); //TODO Debug mode... Remove this.
 				System.out.println("Error: Failed to read the origin wp_posts table.");
 			}
 			
@@ -365,18 +365,18 @@ public class MainClass
 					}
 					catch (SQLException e) 
 					{
-						e.printStackTrace();
+						e.printStackTrace(); //TODO Debug mode... Remove this.
 						System.out.println("Error: Failed to write the destination wp_postmeta table.");
 					} catch (WriteWPPostMetaException e) 
 					{
-						e.printStackTrace();
+						e.printStackTrace(); //TODO Debug mode... Remove this.
 						System.out.println("Error: Failed to write the destination wp_postmeta table.");
 					}
 				}
 			} 
 			catch (SQLException e) 
 			{
-				e.printStackTrace();
+				e.printStackTrace(); //TODO Debug mode... Remove this.
 				System.out.println("Error: Failed to read the origin wp_postmeta table.");
 			}
 		}
