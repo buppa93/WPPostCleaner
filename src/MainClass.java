@@ -23,7 +23,10 @@ import model.WPUserMeta;
  */
 public class MainClass 
 {
-
+	protected static int wpUsersLength;
+	protected static int wpUserMetaLength;
+	protected static int wpPostLength;
+	protected static int wpPostMetaLength;
 	//example command WPPostsCloner -o host:port/dbname -d host:port/dbname
 	//url example: host:port/dbname
 	/**
@@ -153,11 +156,14 @@ public class MainClass
 				if(srcUserInterface.getReadValues().isEmpty())
 				{
 					System.out.println("Pay Attention!: No records have been read from the table wp_users.");
+					wpUsersLength = 0;
 				}
 				else
 				{
 					System.out.println("Read " + srcUserInterface.getReadValues().size()
 							+ "records from table wp_users.");
+					
+					wpUsersLength = srcUserInterface.getReadValues().size();
 					
 					System.out.println("Do you want to list the records? (y/n)");
 					String choose = Keyboard.readString();
@@ -214,11 +220,14 @@ public class MainClass
 				if(wpUserMeta.getReadValues().isEmpty())
 				{
 					System.out.println("Pay Attention!: No records have been read from the table wp_usermeta.");
+					wpUserMetaLength = 0;
 				}
 				else
 				{
 					System.out.println("Read " + wpUserMeta.getReadValues().size()
 							+ "records from table wp_usermeta.");
+					
+					wpUserMetaLength = wpUserMeta.getReadValues().size();
 					
 					System.out.println("Do you want to list the records? (y/n)");
 					String choose = Keyboard.readString();
@@ -275,11 +284,14 @@ public class MainClass
 				if(wpPost.getReadValues().isEmpty())
 				{
 					System.out.println("Pay Attention!: No records have been read from the table wp_posts.");
+					wpPostLength = 0;
 				}
 				else
 				{
 					System.out.println("Read " + wpPost.getReadValues().size()
 							+ "records from table wp_posts.");
+					
+					wpPostLength = wpPost.getReadValues().size();
 					
 					System.out.println("Do you want to list the records? (y/n)");
 					String choose = Keyboard.readString();
@@ -331,11 +343,14 @@ public class MainClass
 				if(wpPostMeta.getReadValues().isEmpty())
 				{
 					System.out.println("Pay Attention!: No records have been read from the table wp_postmeta.");
+					wpPostMetaLength = 0;
 				}
 				else
 				{
 					System.out.println("Read " + wpPostMeta.getReadValues().size()
 							+ "records from table wp_postmeta.");
+					
+					wpPostMetaLength = wpPostMeta.getReadValues().size();
 					
 					System.out.println("Do you want to list the records? (y/n)");
 					String choose = Keyboard.readString();
@@ -379,9 +394,20 @@ public class MainClass
 				e.printStackTrace(); //TODO Debug mode... Remove this.
 				System.out.println("Error: Failed to read the origin wp_postmeta table.");
 			}
+			
+			summaryReport();
 		}
 	}
 	
+	private static void summaryReport() 
+	{
+		System.out.println("---------------------- Summary Report ----------------------");
+		System.out.println("Read " + wpUsersLength + "records from wp_users table");
+		System.out.println("Read " + wpUserMetaLength + "records from wp_usermeta table");
+		System.out.println("Read " + wpPostLength + "records from wp_post table");
+		System.out.println("Read " + wpPostMetaLength + "records from wp_postmeta table");
+	}
+
 	public static boolean isUrlValid(String url)
 	{
 		if(url.contains(":") && url.contains("/"))
