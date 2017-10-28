@@ -1,5 +1,12 @@
 package model;
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author john doe <jdoe@myorg.com>
+ * @since 1.2
+ * @version 1.8 Changes done
+ */
 public class WPPostMeta 
 {
 	private int metaId;

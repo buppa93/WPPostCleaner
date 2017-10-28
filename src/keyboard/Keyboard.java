@@ -1,5 +1,12 @@
 package keyboard;
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author john doe <jdoe@myorg.com>
+ * @since 1.2
+ * @version 1.8 Changes done
+ */
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 

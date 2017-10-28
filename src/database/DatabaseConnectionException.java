@@ -1,9 +1,11 @@
 package database;
 
 /**
- * Modellare la situazione di fallito caricamento del driver del DBMS.
- * @author Stefano Cuppone
+ * PJDCC - Summary for class responsabilities.
  *
+ * @author john doe <jdoe@myorg.com>
+ * @since 1.2
+ * @version 1.8 Changes done
  */
 public class DatabaseConnectionException extends Exception{
 	
