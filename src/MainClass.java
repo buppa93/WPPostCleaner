@@ -34,6 +34,10 @@ public class MainClass
 	protected static int wpUserMetaLength;
 	protected static int wpPostLength;
 	protected static int wpPostMetaLength;
+	protected static int wpUsersCopyLength;
+	protected static int wpUserMetaCopyLength;
+	protected static int wpPostCopyLength;
+	protected static int wpPostMetaCopyLength;
 	//example command WPPostsCloner -o host:port/dbname -d host:port/dbname
 	//url example: host:port/dbname
 	/**
@@ -191,20 +195,8 @@ public class MainClass
 					WPUserInterface dstUserInterface = new WPUserInterface(new WPUser(), destDbEngine.getConnection());
 					
 					dstUserInterface.setReadValues(srcUserInterface.getReadValues());
-					try 
-					{
-						dstUserInterface.writeTable();
-					} 
-					catch (WriteWPUserException e) 
-					{
-						e.printStackTrace(); //TODO Debug mode... Remove this.
-						System.out.println("Error: Failed to write the destination users table.");
-					} 
-					catch (SQLException e) 
-					{
-						e.printStackTrace(); //TODO Debug mode... Remove this.
-						System.out.println("Error: Failed to write the destination users table.");
-					}
+					dstUserInterface.writeTable();
+					wpUsersCopyLength = dstUserInterface.getRowsWithErrors().size();
 				}
 			} 
 			catch (SQLException e) 
@@ -256,20 +248,8 @@ public class MainClass
 							new WPUserMetaInterface(new WPUserMeta(), destDbEngine.getConnection());
 					
 					dstUserMetaInterface.setReadValues(wpUserMeta.getReadValues());
-					try 
-					{
-						dstUserMetaInterface.writeTable();
-					} 
-					catch (WriteWPUserMetaException e) 
-					{
-						e.printStackTrace(); //TODO Debug mode... Remove this.
-						System.out.println("Error: Failed to write the destination wp_usermeta table.");
-					} 
-					catch (SQLException e) 
-					{
-						e.printStackTrace(); //TODO Debug mode... Remove this.
-						System.out.println("Error: Failed to write the destination wp_usermeta table.");
-					}
+					dstUserMetaInterface.writeTable();
+					wpUserMetaCopyLength = dstUserMetaInterface.getRowsWithErrors().size();
 				}
 			} 
 			catch (SQLException e) 
@@ -319,15 +299,8 @@ public class MainClass
 					WPPostInterface dstPostInterface = new WPPostInterface(new WPPost(), destDbEngine.getConnection());
 					
 					dstPostInterface.setReadValues(wpPost.getReadValues());
-					try 
-					{
-						dstPostInterface.writeTable();
-					}
-					catch (SQLException e) 
-					{
-						e.printStackTrace(); //TODO Debug mode... Remove this.
-						System.out.println("Error: Failed to write the destination wp_posts table.");
-					}
+					dstPostInterface.writeTable();
+					wpPostCopyLength = dstPostInterface.getRowsWithErrors().size();
 					
 				}
 			} 
@@ -379,19 +352,8 @@ public class MainClass
 							new WPPostMetaInterface(new WPPostMeta(), destDbEngine.getConnection());
 					
 					dstPostMetaInterface.setReadValues(wpPostMeta.getReadValues());
-					try 
-					{
-						dstPostMetaInterface.writeTable();
-					}
-					catch (SQLException e) 
-					{
-						e.printStackTrace(); //TODO Debug mode... Remove this.
-						System.out.println("Error: Failed to write the destination wp_postmeta table.");
-					} catch (WriteWPPostMetaException e) 
-					{
-						e.printStackTrace(); //TODO Debug mode... Remove this.
-						System.out.println("Error: Failed to write the destination wp_postmeta table.");
-					}
+					dstPostMetaInterface.writeTable();
+					wpPostMetaCopyLength = dstPostMetaInterface.getRowsWithErrors().size();
 				}
 			} 
 			catch (SQLException e) 
@@ -411,6 +373,50 @@ public class MainClass
 		System.out.println("Read " + wpUserMetaLength + "records from wp_usermeta table");
 		System.out.println("Read " + wpPostLength + "records from wp_posts table");
 		System.out.println("Read " + wpPostMetaLength + "records from wp_postmeta table");
+		System.out.println("--------------------- Write Report");
+		if(wpUsersCopyLength == 0)
+		{
+			System.out.println("Write " + wpUsersLength + " records of " + wpUsersLength + " in table wp_users");
+		}
+		else
+		{
+			int errors = wpUsersLength - wpUsersCopyLength;
+			System.out.println("Write " + errors + " records of " + wpUsersLength + " in table wp_users");
+		}
+		
+		if(wpUserMetaCopyLength == 0)
+		{
+			System.out.println("Write " + wpUserMetaLength + " records of " + wpUserMetaLength 
+					+ " in table wp_usermeta");
+		}
+		else
+		{
+			int errors = wpUserMetaLength - wpUserMetaCopyLength;
+			System.out.println("Write " + errors + " records of " + wpUserMetaLength 
+					+ " in table wp_usermeta");
+		}
+		
+		if(wpPostCopyLength == 0)
+		{
+			System.out.println("Write " + wpPostLength + " records of " + wpPostLength + " in table wp_posts");
+		}
+		else
+		{
+			int errors = wpPostLength - wpPostCopyLength;
+			System.out.println("Write " + errors + " records of " + wpPostLength + " in table wp_posts");
+		}
+		
+		if(wpPostMetaCopyLength == 0)
+		{
+			System.out.println("Write " + wpPostMetaLength + " records of " + wpPostMetaLength 
+					+ " in table wp_postmeta");
+		}
+		else
+		{
+			int errors = wpPostMetaLength - wpPostMetaCopyLength;
+			System.out.println("Write " + errors + " records of " + wpPostMetaLength 
+					+ " in table wp_postmeta");
+		}
 	}
 
 	public static boolean isUrlValid(String url)

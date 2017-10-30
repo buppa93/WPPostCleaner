@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import model.WPPost;
 import model.WPPostMeta;
 
 public class WPPostMetaInterface 
@@ -22,6 +23,7 @@ public class WPPostMetaInterface
 	private WPPostMeta postMeta;
 	private Connection conn;
 	private ArrayList<WPPostMeta> readValues;
+	private ArrayList<WPPostMeta> rowsWithErrors;
 	
 	private static final String READ_QUERY = "SELECT * FROM wp_postmeta";
 	private String WRITE_STATEMENT = "INSERT INTO wp_postmeta (meta_id, post_id, meta_key, meta_value) VALUES (?,?,?,?)";
@@ -41,6 +43,7 @@ public class WPPostMetaInterface
 		this.postMeta = postMeta;
 		this.conn = conn;
 		this.readValues = new ArrayList<WPPostMeta>();
+		this.rowsWithErrors =  new ArrayList<WPPostMeta>();
 	}
 	
 	/**
@@ -83,6 +86,18 @@ public class WPPostMetaInterface
 	 * @param readValues
 	 */
 	public void setReadValues(ArrayList<WPPostMeta> readValues) {this.readValues = readValues;}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public ArrayList<WPPostMeta> getRowsWithErrors() {return rowsWithErrors;}
+	
+	/**
+	 * 
+	 * @param rowsWithErrors
+	 */
+	public void setRowsWithErrors(ArrayList<WPPostMeta> rowsWithErrors) {this.rowsWithErrors = rowsWithErrors;}
 	
 	/**
 	 * 
@@ -107,25 +122,44 @@ public class WPPostMetaInterface
 	 * @throws WriteWPPostMetaException
 	 * @throws SQLException 
 	 */
-	public void writeTable() throws WriteWPPostMetaException, SQLException
+	public void writeTable()
 	{
 		Iterator<WPPostMeta> itr = readValues.iterator();
 		
 		while(itr.hasNext())
 		{
 			WPPostMeta wpPost = itr.next();
-			PreparedStatement prStm = conn.prepareStatement(WRITE_STATEMENT);
-			prStm.setInt(1, wpPost.getMetaId());
-			prStm.setInt(2, wpPost.getPostId());
-			prStm.setString(3, wpPost.getMetaKey());
-			prStm.setString(4, wpPost.getMetaValue());
-			
-			int res = prStm.executeUpdate();
-			
-			if(res == 0)
+			PreparedStatement prStm;
+			int res = 0;
+			try 
 			{
-				throw new WriteWPPostMetaException(wpPost.toString());
+				prStm = conn.prepareStatement(WRITE_STATEMENT);
+				prStm.setInt(1, wpPost.getMetaId());
+				prStm.setInt(2, wpPost.getPostId());
+				prStm.setString(3, wpPost.getMetaKey());
+				prStm.setString(4, wpPost.getMetaValue());
+				
+				res = prStm.executeUpdate();
+				
+				if(res == 0)
+				{
+					try 
+					{
+						throw new WriteWPPostMetaException(wpPost.toString());
+					} 
+					catch (WriteWPPostMetaException e) 
+					{
+						e.printStackTrace(); // TODO Debug Mode! Delete This!
+						this.rowsWithErrors.add(wpPost);
+					}
+				}
+			} 
+			catch (SQLException e1) 
+			{
+				e1.printStackTrace(); // TODO Debug Mode! Delete This!
+				this.rowsWithErrors.add(wpPost);
 			}
+			
 		}
 	}
 

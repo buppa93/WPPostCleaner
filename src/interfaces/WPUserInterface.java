@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import model.WPPostMeta;
 import model.WPUser;
 
 public class WPUserInterface 
@@ -22,6 +23,7 @@ public class WPUserInterface
 	private WPUser user;
 	private Connection conn;
 	private ArrayList<WPUser> readValues;
+	private ArrayList<WPUser> rowsWithErrors;
 	
 	private static final String READ_QUERY = "SELECT * FROM wp_users";
 	private String WRITE_STATEMENT = "INSERT INTO wp_users(ID, user_login, user_pass, user_nicename, user_email, "
@@ -49,6 +51,7 @@ public class WPUserInterface
 		this.user = user;
 		this.conn = conn;
 		this.readValues = new ArrayList<WPUser>();
+		this.rowsWithErrors = new ArrayList<WPUser>();
 	}
 	
 	/**
@@ -94,6 +97,18 @@ public class WPUserInterface
 	
 	/**
 	 * 
+	 * @return
+	 */
+	public ArrayList<WPUser> getRowsWithErrors() {return rowsWithErrors;}
+	
+	/**
+	 * 
+	 * @param rowsWithErrors
+	 */
+	public void setRowsWithErrors(ArrayList<WPUser> rowsWithErrors) {this.rowsWithErrors = rowsWithErrors;}
+	
+	/**
+	 * 
 	 * @throws SQLException
 	 */
 	public void readTable() throws SQLException
@@ -116,7 +131,7 @@ public class WPUserInterface
 	 * @throws WriteWPUserException
 	 * @throws SQLException
 	 */
-	public void writeTable() throws WriteWPUserException, SQLException
+	public void writeTable()
 	{
 		Iterator<WPUser> itr = readValues.iterator();
 		
@@ -140,17 +155,25 @@ public class WPUserInterface
 				prStm.setString(10, user.getDisplayName());
 				
 				res = prStm.executeUpdate();
+				
+				if(res == 0)
+				{
+					try 
+					{
+						throw new WriteWPUserException(user.toString());
+					} 
+					catch (WriteWPUserException e) 
+					{
+						e.printStackTrace(); // TODO Debug Mode! Delete This!
+						this.rowsWithErrors.add(user);
+					}
+				}
 			}
 			catch(SQLException e)
 			{
-				e.printStackTrace();
-				prStm.getWarnings();
+				e.printStackTrace(); // TODO Debug Mode! Delete This!
+				this.rowsWithErrors.add(user);
 				
-			}
-			
-			if(res == 0)
-			{
-				throw new WriteWPUserException(user.toString());
 			}
 		}
 	}

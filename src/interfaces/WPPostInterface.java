@@ -23,6 +23,7 @@ public class WPPostInterface
 	private WPPost post;
 	private Connection conn;
 	private ArrayList<WPPost> readValues;
+	private ArrayList<WPPost> rowsWithErrors;
 	
 	private static final String READ_QUERY = "SELECT * FROM wp_posts";
 	private String WRITE_STATEMENT = "INSERT INTO wp_posts(ID, post_author, post_date, post_date_gmt, post_content," 
@@ -66,6 +67,7 @@ public class WPPostInterface
 		this.post = post;
 		this.conn = conn;
 		this.readValues = new ArrayList<WPPost>();
+		this.rowsWithErrors = new ArrayList<WPPost>();
 	}
 	
 	/**
@@ -108,6 +110,18 @@ public class WPPostInterface
 	 * @param readValues
 	 */
 	public void setReadValues(ArrayList<WPPost> readValues) {this.readValues = readValues;}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public ArrayList<WPPost> getRowsWithErrors() {return rowsWithErrors;}
+	
+	/**
+	 * 
+	 * @param rowsWithErrors
+	 */
+	public void setRowsWithErrors(ArrayList<WPPost> rowsWithErrors) {this.rowsWithErrors = rowsWithErrors;}
 
 	/**
 	 * 
@@ -138,57 +152,72 @@ public class WPPostInterface
 	 * @throws SQLException
 	 */
 	@SuppressWarnings("deprecation")
-	public void writeTable() throws SQLException
+	public void writeTable()
 	{
 		Iterator<WPPost> itr = readValues.iterator();
 		
 		while(itr.hasNext())
 		{
 			WPPost post = itr.next();
-			PreparedStatement prStm = conn.prepareStatement(WRITE_STATEMENT);
-			if(post.getPostDateGMT() == null)
-			{
-				post.setPostDateGMT(new Timestamp(0));
-			}
+			PreparedStatement prStm;
+			int res = 0;
 			
-			if(post.getPostModifiedGMT() == null)
+			try 
 			{
-				post.setPostModifiedGMT(new Timestamp(0));
-			}
-			prStm.setInt(1, post.getId());
-			prStm.setInt(2, post.getPostAuthor());
-			prStm.setTimestamp(3, post.getPostDate());
-			prStm.setTimestamp(4, post.getPostDateGMT());
-			prStm.setString(5, post.getPostContent());
-			prStm.setString(6, post.getPostTitle());
-			prStm.setString(7, post.getPostExcerpt());
-			prStm.setString(8, post.getPostStatus());
-			prStm.setString(9, post.getCommentStatus());
-			prStm.setString(10, post.getPingStatus());
-			prStm.setString(11, post.getPostPassword());
-			prStm.setString(12, post.getPostName());
-			prStm.setString(13, post.getToPing());
-			prStm.setString(14, post.getPinged());
-			prStm.setTimestamp(15, post.getPostModified());
-			prStm.setTimestamp(16, post.getPostModifiedGMT());
-			prStm.setString(17, post.getPostContentFiltered());
-			prStm.setInt(18, post.getPostParent());
-			prStm.setString(19, post.getGuid());
-			prStm.setInt(20, post.getMenuOrder());
-			prStm.setString(21, post.getPostType());
-			prStm.setString(22, post.getPostMimeType());
-			prStm.setInt(23, post.getCommentCount());
-			
-			int res = prStm.executeUpdate();
-			
-			if(res == 0)
-			{
-				try {
-					throw new WriteWPPostException(post.toString());
-				} catch (WriteWPPostException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				if(post.getPostDateGMT() == null)
+				{
+					post.setPostDateGMT(new Timestamp(0));
 				}
+				
+				if(post.getPostModifiedGMT() == null)
+				{
+					post.setPostModifiedGMT(new Timestamp(0));
+				}
+				
+				prStm = conn.prepareStatement(WRITE_STATEMENT);
+				prStm.setInt(1, post.getId());
+				prStm.setInt(2, post.getPostAuthor());
+				prStm.setTimestamp(3, post.getPostDate());
+				prStm.setTimestamp(4, post.getPostDateGMT());
+				prStm.setString(5, post.getPostContent());
+				prStm.setString(6, post.getPostTitle());
+				prStm.setString(7, post.getPostExcerpt());
+				prStm.setString(8, post.getPostStatus());
+				prStm.setString(9, post.getCommentStatus());
+				prStm.setString(10, post.getPingStatus());
+				prStm.setString(11, post.getPostPassword());
+				prStm.setString(12, post.getPostName());
+				prStm.setString(13, post.getToPing());
+				prStm.setString(14, post.getPinged());
+				prStm.setTimestamp(15, post.getPostModified());
+				prStm.setTimestamp(16, post.getPostModifiedGMT());
+				prStm.setString(17, post.getPostContentFiltered());
+				prStm.setInt(18, post.getPostParent());
+				prStm.setString(19, post.getGuid());
+				prStm.setInt(20, post.getMenuOrder());
+				prStm.setString(21, post.getPostType());
+				prStm.setString(22, post.getPostMimeType());
+				prStm.setInt(23, post.getCommentCount());
+				
+				res = prStm.executeUpdate();
+				
+				if(res == 0)
+				{
+					try 
+					{
+						throw new WriteWPPostException(post.toString());
+					} 
+					catch (WriteWPPostException e) 
+					{
+						e.printStackTrace(); // TODO Debug Mode! Delete This!
+						this.rowsWithErrors.add(post);
+					}
+				}
+			} 
+			catch (SQLException e1) 
+			{
+				e1.printStackTrace(); // TODO Debug Mode! Delete This!
+				this.rowsWithErrors.add(post);
 			}
 		}
 	}
