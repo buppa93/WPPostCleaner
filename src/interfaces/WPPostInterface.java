@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -136,6 +137,7 @@ public class WPPostInterface
 	 * @throws WriteWPPostException
 	 * @throws SQLException
 	 */
+	@SuppressWarnings("deprecation")
 	public void writeTable() throws SQLException
 	{
 		Iterator<WPPost> itr = readValues.iterator();
@@ -144,6 +146,15 @@ public class WPPostInterface
 		{
 			WPPost post = itr.next();
 			PreparedStatement prStm = conn.prepareStatement(WRITE_STATEMENT);
+			if(post.getPostDateGMT() == null)
+			{
+				post.setPostDateGMT(new Timestamp(0));
+			}
+			
+			if(post.getPostModifiedGMT() == null)
+			{
+				post.setPostModifiedGMT(new Timestamp(0));
+			}
 			prStm.setInt(1, post.getId());
 			prStm.setInt(2, post.getPostAuthor());
 			prStm.setTimestamp(3, post.getPostDate());
@@ -170,7 +181,7 @@ public class WPPostInterface
 			
 			int res = prStm.executeUpdate();
 			
-			if(res == 1)
+			if(res == 0)
 			{
 				try {
 					throw new WriteWPPostException(post.toString());

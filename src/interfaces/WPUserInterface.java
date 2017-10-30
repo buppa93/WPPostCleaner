@@ -123,21 +123,32 @@ public class WPUserInterface
 		while(itr.hasNext())
 		{
 			WPUser user = itr.next();
-			PreparedStatement prStm = conn.prepareStatement(WRITE_STATEMENT);
-			prStm.setInt(1, user.getId());
-			prStm.setString(2, user.getUserLogin());
-			prStm.setString(3, user.getUserPass());
-			prStm.setString(4, user.getUserNicename());
-			prStm.setString(5, user.getUserEmail());
-			prStm.setString(6, user.getUserUrl());
-			prStm.setTimestamp(7, user.getUserRegistered());
-			prStm.setString(8, user.getUserActivationKey());
-			prStm.setInt(9, user.getUserStatus());
-			prStm.setString(10, user.getDisplayName());
+			PreparedStatement prStm = null;
+			int res = 0;
+			try
+			{
+				prStm = conn.prepareStatement(WRITE_STATEMENT);
+				prStm.setInt(1, user.getId());
+				prStm.setString(2, user.getUserLogin());
+				prStm.setString(3, user.getUserPass());
+				prStm.setString(4, user.getUserNicename());
+				prStm.setString(5, user.getUserEmail());
+				prStm.setString(6, user.getUserUrl());
+				prStm.setTimestamp(7, user.getUserRegistered());
+				prStm.setString(8, user.getUserActivationKey());
+				prStm.setInt(9, user.getUserStatus());
+				prStm.setString(10, user.getDisplayName());
+				
+				res = prStm.executeUpdate();
+			}
+			catch(SQLException e)
+			{
+				e.printStackTrace();
+				prStm.getWarnings();
+				
+			}
 			
-			int res = prStm.executeUpdate();
-			
-			if(res == 1)
+			if(res == 0)
 			{
 				throw new WriteWPUserException(user.toString());
 			}

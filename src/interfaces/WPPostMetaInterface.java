@@ -118,11 +118,11 @@ public class WPPostMetaInterface
 			prStm.setInt(1, wpPost.getMetaId());
 			prStm.setInt(2, wpPost.getPostId());
 			prStm.setString(3, wpPost.getMetaKey());
-			prStm.setString(5, wpPost.getMetaValue());
+			prStm.setString(4, wpPost.getMetaValue());
 			
 			int res = prStm.executeUpdate();
 			
-			if(res == 1)
+			if(res == 0)
 			{
 				throw new WriteWPPostMetaException(wpPost.toString());
 			}

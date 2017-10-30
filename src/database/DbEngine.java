@@ -20,7 +20,7 @@ public class DbEngine
 {
 	private static final String DRIVER_CLASS_NAME = "org.gjt.mm.mysql.Driver";
 	private static final String DBMS = "jdbc:mysql";
-	private static Connection conn;
+	private Connection conn;
 	
 	public DbEngine() {}
 	
@@ -34,7 +34,7 @@ public class DbEngine
 	public void initConnection(String host, String user, String password) 
 			throws DatabaseConnectionException
 	{
-		String connectionString = DBMS+"://" + host; 
+		String connectionString = DBMS+"://" + host + "?zeroDateTimeBehavior=convertToNull"; 
 		
 		try 
 		{
@@ -59,12 +59,12 @@ public class DbEngine
 	 * 
 	 * @return
 	 */
-	public static Connection getConnection() {return conn;}
+	public Connection getConnection() {return conn;}
 	
 	/**
 	 * 
 	 */
-	public static void closeConnection()
+	public void closeConnection()
 	{
 		try 
 		{

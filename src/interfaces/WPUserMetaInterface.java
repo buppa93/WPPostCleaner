@@ -118,11 +118,11 @@ public class WPUserMetaInterface
 			prStm.setInt(1, wpUserMeta.getuMetaId());
 			prStm.setInt(2, wpUserMeta.getUserId());
 			prStm.setString(3, wpUserMeta.getMetaKey());
-			prStm.setString(5, wpUserMeta.getMetaValue());
+			prStm.setString(4, wpUserMeta.getMetaValue());
 			
 			int res = prStm.executeUpdate();
 			
-			if(res == 1)
+			if(res == 0)
 			{
 				throw new WriteWPUserMetaException(wpUserMeta.toString());
 			}

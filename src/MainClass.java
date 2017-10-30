@@ -61,7 +61,6 @@ public class MainClass
 		
 		if(argsLen < 4)
 		{
-			System.out.println("Args len OK");
 			try
 			{
 				throw new BadCommandException("You have an error in the arguments sintax");
@@ -76,7 +75,6 @@ public class MainClass
 		{
 			for(int i=0; i<4; i++)
 			{
-				System.out.println("for -> " + i + "arg -> " + args[i]);
 				switch(args[i])
 				{
 					case "-o":
@@ -168,7 +166,7 @@ public class MainClass
 				else
 				{
 					System.out.println("Read " + srcUserInterface.getReadValues().size()
-							+ "records from table wp_users.");
+							+ " records from table wp_users.");
 					
 					wpUsersLength = srcUserInterface.getReadValues().size();
 					
@@ -232,7 +230,7 @@ public class MainClass
 				else
 				{
 					System.out.println("Read " + wpUserMeta.getReadValues().size()
-							+ "records from table wp_usermeta.");
+							+ " records from table wp_usermeta.");
 					
 					wpUserMetaLength = wpUserMeta.getReadValues().size();
 					
@@ -296,7 +294,7 @@ public class MainClass
 				else
 				{
 					System.out.println("Read " + wpPost.getReadValues().size()
-							+ "records from table wp_posts.");
+							+ " records from table wp_posts.");
 					
 					wpPostLength = wpPost.getReadValues().size();
 					
@@ -355,7 +353,7 @@ public class MainClass
 				else
 				{
 					System.out.println("Read " + wpPostMeta.getReadValues().size()
-							+ "records from table wp_postmeta.");
+							+ " records from table wp_postmeta.");
 					
 					wpPostMetaLength = wpPostMeta.getReadValues().size();
 					
@@ -409,9 +407,9 @@ public class MainClass
 	private static void summaryReport() 
 	{
 		System.out.println("---------------------- Summary Report ----------------------");
-		System.out.println("Read " + wpUsersLength + "records from wp_users table");
+		System.out.println("Read " + wpUsersLength + " records from wp_users table");
 		System.out.println("Read " + wpUserMetaLength + "records from wp_usermeta table");
-		System.out.println("Read " + wpPostLength + "records from wp_post table");
+		System.out.println("Read " + wpPostLength + "records from wp_posts table");
 		System.out.println("Read " + wpPostMetaLength + "records from wp_postmeta table");
 	}
 
