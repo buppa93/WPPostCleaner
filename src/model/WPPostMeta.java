@@ -1,11 +1,10 @@
 package model;
 
 /**
- * PJDCC - Summary for class responsabilities.
- *
- * @author john doe <jdoe@myorg.com>
- * @since 1.2
- * @version 1.8 Changes done
+ * 
+ * WPPostMeta - Model a row in the wp_postmeta table
+ * @author Giuseppe Antonio Sansone <giuseppeantonio.sansone@gmail.com>
+ * @version 0.1
  */
 public class WPPostMeta 
 {
@@ -15,7 +14,7 @@ public class WPPostMeta
 	private String metaValue;
 	
 	/**
-	 * 
+	 * Constructor for the class
 	 * @param metaId
 	 * @param postId
 	 * @param metaKey
@@ -30,60 +29,61 @@ public class WPPostMeta
 	}
 	
 	/**
-	 * 
+	 * Empty constructor for the class
 	 */
 	public WPPostMeta() {}
 
 	/**
-	 * 
-	 * @return
+	 * Get the meta ID
+	 * @return the ID
 	 */
 	public int getMetaId() {return metaId;}
 	
 	/**
-	 * 
-	 * @param metaId
+	 * Set the meta ID
+	 * @param metaId the ID
 	 */
 	public void setMetaId(int metaId) {this.metaId = metaId;}
 
 	/**
-	 * 
-	 * @return
+	 * Get the post ID
+	 * @return post ID
 	 */
 	public int getPostId() {return postId;}
 
 	/**
-	 * 
-	 * @param postId
+	 * Set the post ID
+	 * @param postId post ID
 	 */
 	public void setPostId(int postId) {this.postId = postId;}
 
 	/**
-	 * 
-	 * @return
+	 * Get the meta key
+	 * @return meta key
 	 */
 	public String getMetaKey() {return metaKey;}
 
 	/**
-	 * 
-	 * @param metaKey
+	 * Set the meta key
+	 * @param metaKey meta key
 	 */
 	public void setMetaKey(String metaKey) {this.metaKey = metaKey;}
 
 	/**
-	 * 
-	 * @return
+	 * Get the meta value
+	 * @return meta value
 	 */
 	public String getMetaValue() {return metaValue;}
 
 	/**
-	 * 
-	 * @param metaValue
+	 * Set the meta value
+	 * @param metaValue meta value
 	 */
 	public void setMetaValue(String metaValue) {this.metaValue = metaValue;}	
 
 	/**
-	 * 
+	 * Get a string rappresentation for the object
+	 * @return a string rappresentation of the object
 	 */
 	@Override
 	public String toString() 

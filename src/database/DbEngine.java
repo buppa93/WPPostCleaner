@@ -1,20 +1,14 @@
 package database;
 
-/**
- * PJDCC - Summary for class responsabilities.
- *
- * @author john doe <jdoe@myorg.com>
- * @since 1.2
- * @version 1.8 Changes done
- */
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Gestisce l'accesso alla base di dati.
- * @author Stefano Cuppone
- *
+ * 
+ * DbEngine - Manage a connection to a database.
+ * @author Giuseppe Antonio Sansone <giuseppeantonio.sansone@gmail.com>
+ * @version 0.1
  */
 public class DbEngine
 {
@@ -22,13 +16,16 @@ public class DbEngine
 	private static final String DBMS = "jdbc:mysql";
 	private Connection conn;
 	
+	/**
+	 * Empty constructor for the class
+	 */
 	public DbEngine() {}
 	
 	/**
-	 * 
-	 * @param host
-	 * @param user
-	 * @param password
+	 * Initialize a connection to a database
+	 * @param host the host name
+	 * @param user the database username
+	 * @param password the password for the user
 	 * @throws DatabaseConnectionException
 	 */
 	public void initConnection(String host, String user, String password) 
@@ -56,13 +53,13 @@ public class DbEngine
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Get the connection instance
+	 * @return connection instance
 	 */
 	public Connection getConnection() {return conn;}
 	
 	/**
-	 * 
+	 * Close the connection to database
 	 */
 	public void closeConnection()
 	{

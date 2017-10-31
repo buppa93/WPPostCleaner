@@ -1,11 +1,10 @@
 package model;
 
 /**
- * PJDCC - Summary for class responsabilities.
- *
- * @author john doe <jdoe@myorg.com>
- * @since 1.2
- * @version 1.8 Changes done
+ * 
+ * WPUserMeta - Model a row in the wp_usermeta table
+ * @author Giuseppe Antonio Sansone <giuseppeantonio.sansone@gmail.com>
+ * @version 0.1
  */
 public class WPUserMeta 
 {
@@ -16,7 +15,7 @@ public class WPUserMeta
 	private String metaValue;
 	
 	/**
-	 * 
+	 * Constructor for the class
 	 * @param uMetaId
 	 * @param userId
 	 * @param metaKey
@@ -31,13 +30,13 @@ public class WPUserMeta
 	}
 	
 	/**
-	 * 
+	 * Empty constructor for the class
 	 */
 	public WPUserMeta() {}
 	
 	/**
-	 * 
-	 * @return
+	 * Get the uMeta ID
+	 * @return uMeta ID
 	 */
 	public int getuMetaId() 
 	{
@@ -45,49 +44,50 @@ public class WPUserMeta
 	}
 
 	/**
-	 * 
-	 * @param uMetaId
+	 * Set the uMeta ID
+	 * @param uMetaId UMeta ID
 	 */
 	public void setuMetaId(int uMetaId) {this.uMetaId = uMetaId;}
 
 	/**
-	 * 
-	 * @return
+	 * Get the user ID
+	 * @return user ID
 	 */
 	public int getUserId() {return userId;}
 
 	/**
-	 * 
-	 * @param userId
+	 * Set the user ID
+	 * @param userId user ID
 	 */
 	public void setUserId(int userId) {this.userId = userId;}
 
 	/**
-	 * 
-	 * @return
+	 * Get the meta key
+	 * @return the meta key
 	 */
 	public String getMetaKey() {return metaKey;}
 
 	/**
-	 * 
-	 * @param metaKey
+	 * Set the meta key
+	 * @param metaKey the meta key
 	 */
 	public void setMetaKey(String metaKey) {this.metaKey = metaKey;}
 
 	/**
-	 * 
-	 * @return
+	 * Get the meta value
+	 * @return the meta value
 	 */
 	public String getMetaValue() {return metaValue;}
 
 	/**
-	 * 
-	 * @param metaValue
+	 * Set the meta value
+	 * @param metaValue the meta value
 	 */
 	public void setMetaValue(String metaValue) {this.metaValue = metaValue;}
 
 	/**
-	 * 
+	 * Get a string rappresentation for the object
+	 * @return a string rappresentation of the object
 	 */
 	@Override
 	public String toString() {

@@ -1,12 +1,5 @@
 package interfaces;
 
-/**
- * PJDCC - Summary for class responsabilities.
- *
- * @author john doe <jdoe@myorg.com>
- * @since 1.2
- * @version 1.8 Changes done
- */
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +11,12 @@ import java.util.Iterator;
 
 import model.WPPost;
 
+/**
+ * 
+ * WPPostInterface - Interface for the wp_posts table.
+ * @author Giuseppe Antonio Sansone <giuseppeantonio.sansone@gmail.com>
+ * @version 0.1
+ */
 public class WPPostInterface 
 {
 	private WPPost post;
@@ -58,9 +57,9 @@ public class WPPostInterface
 	private static final String COMMENT_COUNT = "comment_count";
 	
 	/**
-	 * 
-	 * @param post
-	 * @param conn
+	 * Contructor for the class
+	 * @param post a Post instance
+	 * @param conn the database connection instance
 	 */
 	public WPPostInterface(WPPost post, Connection conn) 
 	{
@@ -71,60 +70,60 @@ public class WPPostInterface
 	}
 	
 	/**
-	 * 
+	 * Empy constructor for the class
 	 */
 	public WPPostInterface() {}
 
 	/**
-	 * 
-	 * @return
+	 * Get the post attribute
+	 * @return the post attribute
 	 */
 	public WPPost getPost() {return post;}
 
 	/**
-	 * 
-	 * @param post
+	 * Set the post attribute
+	 * @param post the post attribute
 	 */
 	public void setPost(WPPost post) {this.post = post;}
 
 	/**
-	 * 
-	 * @return
+	 * Get the connection attribute
+	 * @return the connection attribute
 	 */
 	public Connection getConn() {return conn;}
 
 	/**
-	 * 
-	 * @param conn
+	 * Set the connection attribute
+	 * @param conn the connection attribute
 	 */
 	public void setConn(Connection conn) {this.conn = conn;}
 
 	/**
-	 * 
-	 * @return
+	 * Set a list of read rows in the table
+	 * @return a list of read rows
 	 */
 	public ArrayList<WPPost> getReadValues() {return readValues;}
 
 	/**
-	 * 
-	 * @param readValues
+	 * Set a list of read rows in the table
+	 * @param readValues a list of read rows
 	 */
 	public void setReadValues(ArrayList<WPPost> readValues) {this.readValues = readValues;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get a list of rows with an error state
+	 * @return a list of rows with an error state
 	 */
 	public ArrayList<WPPost> getRowsWithErrors() {return rowsWithErrors;}
 	
 	/**
-	 * 
-	 * @param rowsWithErrors
+	 * Set a list of rows with an error state
+	 * @param rowsWithErrors a list of rows with an error state
 	 */
 	public void setRowsWithErrors(ArrayList<WPPost> rowsWithErrors) {this.rowsWithErrors = rowsWithErrors;}
 
 	/**
-	 * 
+	 * Read the wp_posts table
 	 * @throws SQLException
 	 */
 	public void readTable() throws SQLException
@@ -147,7 +146,7 @@ public class WPPostInterface
 	}
 	
 	/**
-	 * 
+	 * Write the wp_post table
 	 * @throws WriteWPPostException
 	 * @throws SQLException
 	 */
@@ -209,21 +208,22 @@ public class WPPostInterface
 					} 
 					catch (WriteWPPostException e) 
 					{
-						e.printStackTrace(); // TODO Debug Mode! Delete This!
+						//e.printStackTrace(); // TODO Debug Mode! Delete This!
 						this.rowsWithErrors.add(post);
 					}
 				}
 			} 
 			catch (SQLException e1) 
 			{
-				e1.printStackTrace(); // TODO Debug Mode! Delete This!
+				//e1.printStackTrace(); // TODO Debug Mode! Delete This!
 				this.rowsWithErrors.add(post);
 			}
 		}
 	}
 	
 	/**
-	 * 
+	 * Get a string rappresentation for the object
+	 * @return a string rappresentation of the object
 	 */
 	@Override
 	public String toString() 

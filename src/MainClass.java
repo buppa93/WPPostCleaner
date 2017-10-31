@@ -138,7 +138,7 @@ public class MainClass
 			} 
 			catch (DatabaseConnectionException e) 
 			{
-				e.printStackTrace(); //TODO Debug mode... Remove this.
+				//e.printStackTrace(); //TODO Debug mode... Remove this.
 				System.out.println("Fatal error: Failed to estabilish the connection with the origin database.");
 				System.exit(1);
 			}
@@ -150,7 +150,7 @@ public class MainClass
 			}
 			catch(DatabaseConnectionException e)
 			{
-				e.printStackTrace(); //TODO Debug mode... Remove this.
+				//e.printStackTrace(); //TODO Debug mode... Remove this.
 				System.out.println("Fatal error: Failed to estabilish the connection with the destination database.");
 				System.exit(1);
 			}
@@ -201,7 +201,7 @@ public class MainClass
 			} 
 			catch (SQLException e) 
 			{
-				e.printStackTrace(); //TODO Debug mode... Remove this.
+				//e.printStackTrace(); //TODO Debug mode... Remove this.
 				System.out.println("Error: Failed to read the origin users table.");
 			}
 			
@@ -254,7 +254,7 @@ public class MainClass
 			} 
 			catch (SQLException e) 
 			{
-				e.printStackTrace(); //TODO Debug mode... Remove this.
+				//e.printStackTrace(); //TODO Debug mode... Remove this.
 				System.out.println("Error: Failed to read the origin wp_usermeta table.");
 			}
 			
@@ -306,7 +306,7 @@ public class MainClass
 			} 
 			catch (SQLException e) 
 			{
-				e.printStackTrace(); //TODO Debug mode... Remove this.
+				//e.printStackTrace(); //TODO Debug mode... Remove this.
 				System.out.println("Error: Failed to read the origin wp_posts table.");
 			}
 			
@@ -358,7 +358,7 @@ public class MainClass
 			} 
 			catch (SQLException e) 
 			{
-				e.printStackTrace(); //TODO Debug mode... Remove this.
+				//e.printStackTrace(); //TODO Debug mode... Remove this.
 				System.out.println("Error: Failed to read the origin wp_postmeta table.");
 			}
 			

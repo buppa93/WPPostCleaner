@@ -1,14 +1,13 @@
 package model;
 
-/**
- * PJDCC - Summary for class responsabilities.
- *
- * @author john doe <jdoe@myorg.com>
- * @since 1.2
- * @version 1.8 Changes done
- */
 import java.sql.Timestamp;
 
+/**
+ * 
+ * WPPost - Model a row in the wp_posts table
+ * @author Giuseppe Antonio Sansone <giuseppeantonio.sansone@gmail.com>
+ * @version 0.1
+ */
 public class WPPost 
 {
 
@@ -37,7 +36,7 @@ public class WPPost
 	private int commentCount;
 	
 	/**
-	 * 
+	 * Constructor for the class
 	 * @param id
 	 * @param postAuthor
 	 * @param postDate
@@ -93,287 +92,289 @@ public class WPPost
 	}
 	
 	/**
-	 * 
+	 * Empty constructor for the class
 	 */
 	public WPPost() {}
 	
 	/**
-	 * 
-	 * @return
+	 * Get the ID
+	 * @return the post ID
 	 */
 	public int getId() {return id;}
 	
 	/**
-	 * 
-	 * @param id
+	 * Set the ID
+	 * @param id the post ID
 	 */
 	public void setId(int id) {this.id = id;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get the post author
+	 * @return the author
 	 */
 	public int getPostAuthor() {return postAuthor;}
 	
 	/**
-	 * 
-	 * @param postAuthor
+	 * Set the post author
+	 * @param postAuthor the author
 	 */
 	public void setPostAuthor(int postAuthor) {this.postAuthor = postAuthor;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get the date of post creation
+	 * @return the date of creation
 	 */
 	public Timestamp getPostDate() {return postDate;}
 	
 	/**
-	 * 
-	 * @param postDate
+	 * Set the date of post creation
+	 * @param postDate the date of creation
 	 */
 	public void setPostDate(Timestamp postDate) {this.postDate = postDate;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get the date GMT of post creation
+	 * @return the date of creation (GMT)
 	 */
 	public Timestamp getPostDateGMT() {return postDateGMT;}
 	
 	/**
-	 * 
-	 * @param postDateGMT
+	 * Set the date GMT of post creation
+	 * @param postDateGMT the date of creation (GMT)
 	 */
 	public void setPostDateGMT(Timestamp postDateGMT) {this.postDateGMT = postDateGMT;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get the post content
+	 * @return the post content
 	 */
 	public String getPostContent() {return postContent;}
 	
 	/**
-	 * 
-	 * @param postContent
+	 * Set the post content
+	 * @param postContent the post content
 	 */
 	public void setPostContent(String postContent) {this.postContent = postContent;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get the post title
+	 * @return the post title
 	 */
 	public String getPostTitle() {return postTitle;}
 	
 	/**
-	 * 
-	 * @param postTitle
+	 * Set te post title
+	 * @param postTitle the post title
 	 */
 	public void setPostTitle(String postTitle) {this.postTitle = postTitle;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get the post excerpt
+	 * @return the post excerpt
 	 */
 	public String getPostExcerpt() {return postExcerpt;}
 	
 	/**
-	 * 
-	 * @param postStatus
+	 * Set the post status
+	 * @param postStatus the post status
 	 */
 	public void setPostStatus(String postStatus) {this.postStatus = postStatus;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get the post status
+	 * @return the post status
 	 */
 	public String getPostStatus() {return postStatus;}
 	
 	/**
-	 * 
-	 * @param postExcerpt
+	 * Set the post excerpt
+	 * @param postExcerpt the post excerpt
 	 */
 	public void setPostExcerpt(String postExcerpt) {this.postExcerpt = postExcerpt;}
+	
 	/**
-	 * 
-	 * @return
+	 * Get the comment status 
+	 * @return the comment status
 	 */
 	public String getCommentStatus() {return commentStatus;}
 	
 	/**
-	 * 
-	 * @param commentStatus
+	 * Set the comment status
+	 * @param commentStatus the comment status
 	 */
 	public void setCommentStatus(String commentStatus) {this.commentStatus = commentStatus;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get the ping status
+	 * @return the ping status
 	 */
 	public String getPingStatus() {return pingStatus;}
 	
 	/**
-	 * 
-	 * @param pingStatus
+	 * Set the ping status
+	 * @param pingStatus the ping status
 	 */
 	public void setPingStatus(String pingStatus) {this.pingStatus = pingStatus;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get the post password
+	 * @return the post password
 	 */
 	public String getPostPassword() {return postPassword;}
 	
 	/**
-	 * 
-	 * @param postPassword
+	 * Set the post password
+	 * @param postPassword the post password
 	 */
 	public void setPostPassword(String postPassword) {this.postPassword = postPassword;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get the post name
+	 * @return the post name
 	 */
 	public String getPostName() {return postName;}
 	
 	/**
-	 * 
-	 * @param postName
+	 * Set the post name
+	 * @param postName the post name
 	 */
 	public void setPostName(String postName) {this.postName = postName;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get to ping value
+	 * @return to ping value
 	 */
 	public String getToPing() {return toPing;}
 	
 	/**
-	 * 
-	 * @param toPing
+	 * Set to ping value
+	 * @param toPing to ping value
 	 */
 	public void setToPing(String toPing) {this.toPing = toPing;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get pinged value
+	 * @return pinged value
 	 */
 	public String getPinged() {return pinged;}
 	
 	/**
-	 * 
-	 * @param pinged
+	 * Set the pinged value
+	 * @param pinged pinged valued
 	 */
 	public void setPinged(String pinged) {this.pinged = pinged;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get the post editing date
+	 * @return the post editing date
 	 */
 	public Timestamp getPostModified() {return postModified;}
 	
 	/**
-	 * 
-	 * @param postModified
+	 * Get the post editing date
+	 * @param postModified the post editing date
 	 */
 	public void setPostModified(Timestamp postModified) {this.postModified = postModified;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get the post editing date (GMT)
+	 * @return the post editing date (GMT)
 	 */
 	public Timestamp getPostModifiedGMT() {return postModifiedGMT;}
 	
 	/**
-	 * 
-	 * @param postModifiedGMT
+	 * Set the post editing date (GMT)
+	 * @param postModifiedGMT the post editing date (GMT)
 	 */
 	public void setPostModifiedGMT(Timestamp postModifiedGMT) {this.postModifiedGMT = postModifiedGMT;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get the post content filtered
+	 * @return post content filtered
 	 */
 	public String getPostContentFiltered() {return postContentFiltered;}
 	
 	/**
-	 * 
-	 * @param postContentFiltered
+	 * Get the post content filtered
+	 * @param postContentFiltered post content filtered
 	 */
 	public void setPostContentFiltered(String postContentFiltered) {this.postContentFiltered = postContentFiltered;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get the post parent ID
+	 * @return post parent ID
 	 */
 	public int getPostParent() {return postParent;}
 	
 	/**
-	 * 
-	 * @param postParent
+	 * Set the post parent ID
+	 * @param postParent post parent ID
 	 */
 	public void setPostParent(int postParent) {this.postParent = postParent;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get the guid
+	 * @return the guid
 	 */
 	public String getGuid() {return guid;}
 	
 	/**
-	 * 
-	 * @param guid
+	 * Set the guid
+	 * @param guid the guid
 	 */
 	public void setGuid(String guid) {this.guid = guid;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get menu order number
+	 * @return menu order number
 	 */
 	public int getMenuOrder() {return menuOrder;}
 	
 	/**
-	 * 
-	 * @param menuOrder
+	 * Set menu order number
+	 * @param menuOrder menu order number
 	 */
 	public void setMenuOrder(int menuOrder) {this.menuOrder = menuOrder;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get post type
+	 * @return post type
 	 */
 	public String getPostType() {return postType;}
 	
 	/**
-	 * 
-	 * @param postType
+	 * Set post type
+	 * @param postType post type
 	 */
 	public void setPostType(String postType) {this.postType = postType;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get post MIME type
+	 * @return post MIME type
 	 */
 	public String getPostMimeType() {return postMimeType;}
 	
 	/**
-	 * 
-	 * @param postMimeType
+	 * Set post MIME type
+	 * @param postMimeType post MIME type
 	 */
 	public void setPostMimeType(String postMimeType) {this.postMimeType = postMimeType;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get comment count
+	 * @return comment count
 	 */
 	public int getCommentCount() {return commentCount;}
 	
 	/**
-	 * 
-	 * @param commentCount
+	 * Set comment count
+	 * @param commentCount comment count
 	 */
 	public void setCommentCount(int commentCount) {this.commentCount = commentCount;}
 	
 	/**
-	 * 
+	 * Get a string rappresentation for the object
+	 * @return a string rappresentation of the object
 	 */
 	@Override
 	public String toString() 

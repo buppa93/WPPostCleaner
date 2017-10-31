@@ -1,12 +1,5 @@
 package interfaces;
 
-/**
- * PJDCC - Summary for class responsabilities.
- *
- * @author john doe <jdoe@myorg.com>
- * @since 1.2
- * @version 1.8 Changes done
- */
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +11,12 @@ import java.util.Iterator;
 import model.WPPostMeta;
 import model.WPUser;
 
+/**
+ * 
+ * WPUserInterface - Interface for the wp_users table.
+ * @author Giuseppe Antonio Sansone <giuseppeantonio.sansone@gmail.com>
+ * @version 0.1
+ */
 public class WPUserInterface 
 {
 	private WPUser user;
@@ -42,9 +41,9 @@ public class WPUserInterface
 	private static final String DISPLAY_NAME = "display_name";
 	
 	/**
-	 * 
-	 * @param user
-	 * @param conn
+	 * Constructorfor the class
+	 * @param user a User instance
+	 * @param conn the connection instance
 	 */
 	public WPUserInterface(WPUser user, Connection conn) 
 	{
@@ -55,60 +54,60 @@ public class WPUserInterface
 	}
 	
 	/**
-	 * 
+	 * Empty constructor for the class
 	 */
 	public WPUserInterface() {}
 
 	/**
-	 * 
-	 * @return
+	 * Get the User attribute
+	 * @return the user attribute
 	 */
 	public WPUser getUser() {return user;}
 
 	/**
-	 * 
-	 * @param user
+	 * Set the User attribute
+	 * @param user the user attribute
 	 */
 	public void setUser(WPUser user) {this.user = user;}
 
 	/**
-	 * 
-	 * @return
+	 * Get the connection attribute
+	 * @return the connection attribute
 	 */
 	public Connection getConn() {return conn;}
 
 	/**
-	 * 
-	 * @param conn
+	 * Set the connection attribute
+	 * @param conn the connection attribute
 	 */
 	public void setConn(Connection conn) {this.conn = conn;}
 
 	/**
-	 * 
-	 * @return
+	 * Get a list of read rows in the table
+	 * @return a list of read rows
 	 */
 	public ArrayList<WPUser> getReadValues() {return readValues;}
 
 	/**
-	 * 
-	 * @param readValues
+	 * Set a list of read rows in the table
+	 * @param readValues a list of read rows
 	 */
 	public void setReadValues(ArrayList<WPUser> readValues) {this.readValues = readValues;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get a list of rows with an error state
+	 * @returna list of rows with an error state
 	 */
 	public ArrayList<WPUser> getRowsWithErrors() {return rowsWithErrors;}
 	
 	/**
-	 * 
-	 * @param rowsWithErrors
+	 * Set a list of rows with an error state
+	 * @param rowsWithErrors list of rows with an error state
 	 */
 	public void setRowsWithErrors(ArrayList<WPUser> rowsWithErrors) {this.rowsWithErrors = rowsWithErrors;}
 	
 	/**
-	 * 
+	 * Read the wp_users table
 	 * @throws SQLException
 	 */
 	public void readTable() throws SQLException
@@ -127,7 +126,7 @@ public class WPUserInterface
 	}
 	
 	/**
-	 * 
+	 * Write th wp_users table
 	 * @throws WriteWPUserException
 	 * @throws SQLException
 	 */
@@ -164,14 +163,14 @@ public class WPUserInterface
 					} 
 					catch (WriteWPUserException e) 
 					{
-						e.printStackTrace(); // TODO Debug Mode! Delete This!
+						//e.printStackTrace(); // TODO Debug Mode! Delete This!
 						this.rowsWithErrors.add(user);
 					}
 				}
 			}
 			catch(SQLException e)
 			{
-				e.printStackTrace(); // TODO Debug Mode! Delete This!
+				//e.printStackTrace(); // TODO Debug Mode! Delete This!
 				this.rowsWithErrors.add(user);
 				
 			}
@@ -179,7 +178,8 @@ public class WPUserInterface
 	}
 	
 	/**
-	 * 
+	 * Get a string rappresentation for the object
+	 * @return a string rappresentation of the object
 	 */
 	@Override
 	public String toString() 

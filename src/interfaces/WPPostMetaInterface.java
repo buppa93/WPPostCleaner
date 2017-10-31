@@ -1,12 +1,5 @@
 package interfaces;
 
-/**
- * PJDCC - Summary for class responsabilities.
- *
- * @author john doe <jdoe@myorg.com>
- * @since 1.2
- * @version 1.8 Changes done
- */
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +11,12 @@ import java.util.Iterator;
 import model.WPPost;
 import model.WPPostMeta;
 
+/**
+ * 
+ * WPPostMetaInterface - Interface for the wp_postmeta table.
+ * @author Giuseppe Antonio Sansone <giuseppeantonio.sansone@gmail.com>
+ * @version 0.1
+ */
 public class WPPostMetaInterface 
 {
 	private WPPostMeta postMeta;
@@ -34,9 +33,9 @@ public class WPPostMetaInterface
 	private static final String META_VALUE = "meta_value";
 	
 	/**
-	 * 
-	 * @param postMeta
-	 * @param conn
+	 * Contructor foe the class
+	 * @param postMeta a PostMeta instance
+	 * @param conn the database connection instance
 	 */
 	public WPPostMetaInterface(WPPostMeta postMeta, Connection conn) 
 	{
@@ -47,60 +46,60 @@ public class WPPostMetaInterface
 	}
 	
 	/**
-	 * 
+	 * Empty contructor for the class
 	 */
 	public WPPostMetaInterface() {}
 
 	/**
-	 * 
-	 * @return
+	 * Get the PostMeta attribute
+	 * @return the PostMeta attribute
 	 */
 	public WPPostMeta getPostMeta() {return postMeta;}
 
 	/**
-	 * 
-	 * @param postMeta
+	 * Set the PostMeta attribute
+	 * @param postMeta the PostMeta attribute
 	 */
 	public void setPostMeta(WPPostMeta postMeta) {this.postMeta = postMeta;}
 
 	/**
-	 * 
-	 * @return
+	 * Get the connection attribute
+	 * @return the connection attribute
 	 */
 	public Connection getConn() {return conn;}
 
 	/**
-	 * 
-	 * @param conn
+	 * Set the connection attribute
+	 * @param conn the connection attribute
 	 */
 	public void setConn(Connection conn) {this.conn = conn;}
 
 	/**
-	 * 
-	 * @return
+	 * Get a list of read rows in the table
+	 * @return a list of read rows
 	 */
 	public ArrayList<WPPostMeta> getReadValues() {return readValues;}
 
 	/**
-	 * 
-	 * @param readValues
+	 * Set a list of read rows for the table
+	 * @param readValues a list of read rows
 	 */
 	public void setReadValues(ArrayList<WPPostMeta> readValues) {this.readValues = readValues;}
 
 	/**
-	 * 
-	 * @return
+	 * Get a list of rows with an error state
+	 * @return a list of rows with an error state
 	 */
 	public ArrayList<WPPostMeta> getRowsWithErrors() {return rowsWithErrors;}
 	
 	/**
-	 * 
-	 * @param rowsWithErrors
+	 * Set a list of rows with an error state
+	 * @param rowsWithErrors a list of rows with an error state
 	 */
 	public void setRowsWithErrors(ArrayList<WPPostMeta> rowsWithErrors) {this.rowsWithErrors = rowsWithErrors;}
 	
 	/**
-	 * 
+	 * Read the wp_postmeta table
 	 * @throws SQLException 
 	 */
 	public void readTable() throws SQLException
@@ -118,7 +117,7 @@ public class WPPostMetaInterface
 	}
 	
 	/**
-	 * 
+	 * Write the wp_postmeta table
 	 * @throws WriteWPPostMetaException
 	 * @throws SQLException 
 	 */
@@ -149,20 +148,24 @@ public class WPPostMetaInterface
 					} 
 					catch (WriteWPPostMetaException e) 
 					{
-						e.printStackTrace(); // TODO Debug Mode! Delete This!
+						//e.printStackTrace(); // TODO Debug Mode! Delete This!
 						this.rowsWithErrors.add(wpPost);
 					}
 				}
 			} 
 			catch (SQLException e1) 
 			{
-				e1.printStackTrace(); // TODO Debug Mode! Delete This!
+				//e1.printStackTrace(); // TODO Debug Mode! Delete This!
 				this.rowsWithErrors.add(wpPost);
 			}
 			
 		}
 	}
 
+	/**
+	 * Get a string rappresentation for the object
+	 * @return a string rappresentation of the object
+	 */
 	@Override
 	public String toString() {return "WPPostMetaInterface [postMeta=" + postMeta + ", conn=" + conn + "]";}
 	

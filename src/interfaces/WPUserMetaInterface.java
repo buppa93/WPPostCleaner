@@ -1,12 +1,5 @@
 package interfaces;
 
-/**
- * PJDCC - Summary for class responsabilities.
- *
- * @author john doe <jdoe@myorg.com>
- * @since 1.2
- * @version 1.8 Changes done
- */
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +11,12 @@ import java.util.Iterator;
 import model.WPUser;
 import model.WPUserMeta;
 
+/**
+ * 
+ * WPUserMetaInterface - Interface for the wp_usermeta table.
+ * @author Giuseppe Antonio Sansone <giuseppeantonio.sansone@gmail.com>
+ * @version 0.1
+ */
 public class WPUserMetaInterface 
 {
 	private WPUserMeta userMeta;
@@ -34,9 +33,9 @@ public class WPUserMetaInterface
 	private static final String META_VALUE = "meta_value";
 	
 	/**
-	 * 
-	 * @param userMeta
-	 * @param conn
+	 * Constructor for the class
+	 * @param userMeta a UserMeta instance
+	 * @param conn a connection instance
 	 */
 	public WPUserMetaInterface(WPUserMeta userMeta, Connection conn) 
 	{
@@ -47,60 +46,60 @@ public class WPUserMetaInterface
 	}
 	
 	/**
-	 * 
+	 * Empty constructor for the class
 	 */
 	public WPUserMetaInterface() {}
 
 	/**
-	 * 
-	 * @return
+	 * Get the UserMeta attribute
+	 * @return the UserMeta attribute
 	 */
 	public WPUserMeta getUserMeta() {return userMeta;}
 
 	/**
-	 * 
-	 * @param userMeta
+	 * Set the UserMeta attribute
+	 * @param userMeta the UserMeta attribute
 	 */
 	public void setUserMeta(WPUserMeta userMeta) {this.userMeta = userMeta;}
 
 	/**
-	 * 
-	 * @return
+	 * Get the connection attribute
+	 * @return the connection attribute
 	 */
 	public Connection getConn() {return conn;}
 
 	/**
-	 * 
-	 * @param conn
+	 * Set the connection attribute
+	 * @param conn the connection attribute
 	 */
 	public void setConn(Connection conn) {this.conn = conn;}
 
 	/**
-	 * 
-	 * @return
+	 * Get a list of read rows in the table
+	 * @return a list of read rows
 	 */
 	public ArrayList<WPUserMeta> getReadValues() {return readValues;}
 
 	/**
-	 * 
-	 * @param readValues
+	 * Set a list of read rows in the table
+	 * @param readValues a list of read rows
 	 */
 	public void setReadValues(ArrayList<WPUserMeta> readValues) {this.readValues = readValues;}
 	
 	/**
-	 * 
-	 * @return
+	 * Get a list of rows with an error state
+	 * @return list of rows with an error state
 	 */
 	public ArrayList<WPUserMeta> getRowsWithErrors() {return rowsWithErrors;}
 	
 	/**
-	 * 
-	 * @param rowsWithErrors
+	 * Set a list of rows with an error state
+	 * @param rowsWithErrors list of rows with an error state
 	 */
 	public void setRowsWithErrors(ArrayList<WPUserMeta> rowsWithErrors) {this.rowsWithErrors = rowsWithErrors;}
 	
 	/**
-	 * 
+	 * Read the wp_usermete table
 	 * @throws SQLException
 	 */
 	public void readTable() throws SQLException
@@ -118,7 +117,7 @@ public class WPUserMetaInterface
 	}
 	
 	/**
-	 * 
+	 * Write the wp_usermeta table
 	 * @throws WriteWPUserMetaException
 	 * @throws SQLException
 	 */
@@ -149,14 +148,14 @@ public class WPUserMetaInterface
 					} 
 					catch (WriteWPUserMetaException e) 
 					{
-						e.printStackTrace(); // TODO Debug Mode! Delete This!
+						//e.printStackTrace(); // TODO Debug Mode! Delete This!
 						this.rowsWithErrors.add(wpUserMeta);
 					}
 				}
 			} 
 			catch (SQLException e1) 
 			{
-				e1.printStackTrace(); // TODO Debug Mode! Delete This!
+				//e1.printStackTrace(); // TODO Debug Mode! Delete This!
 				this.rowsWithErrors.add(wpUserMeta);
 			}
 			
@@ -164,7 +163,8 @@ public class WPUserMetaInterface
 	}
 
 	/**
-	 * 
+	 * Get a string rappresentation for the object
+	 * @return a string rappresentation of the object
 	 */
 	@Override
 	public String toString() 

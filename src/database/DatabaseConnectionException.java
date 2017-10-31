@@ -1,24 +1,30 @@
 package database;
 
 /**
- * PJDCC - Summary for class responsabilities.
- *
- * @author john doe <jdoe@myorg.com>
- * @since 1.2
- * @version 1.8 Changes done
+ * 
+ * DatabaseConnectionException - Manage a an to exception occurred in the database's connection.
+ * @author Giuseppe Antonio Sansone <giuseppeantonio.sansone@gmail.com>
+ * @version 0.1
  */
-public class DatabaseConnectionException extends Exception{
+public class DatabaseConnectionException extends Exception
+{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	public DatabaseConnectionException(String message){
+	/**
+	 * Constructor for the class
+	 * @param message The error message for the exception
+	 */
+	public DatabaseConnectionException(String message)
+	{
 		super(message);
 	}
 	
-	public String toString() {
+	/**
+	 * Get the string that describe the exception occurred
+	 */
+	public String toString() 
+	{
 		return getMessage() + ":Caricamento driver DBMS fallito.";
 	}
 
