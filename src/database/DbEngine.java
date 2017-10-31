@@ -39,7 +39,7 @@ public class DbEngine
 		} 
 		catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) 
 		{
-			e.printStackTrace();
+			//e.printStackTrace(); //TODO print error message
 		}
 		
 		try 
@@ -48,8 +48,8 @@ public class DbEngine
 		}
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
-		} 
+			//e.printStackTrace(); //TODO print error message
+		}  
 	}
 	
 	/**
@@ -69,7 +69,7 @@ public class DbEngine
 		} 
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
+			//e.printStackTrace(); //TODO print error message
 		}
 	}
 }
