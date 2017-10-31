@@ -9,7 +9,6 @@ package keyboard;
  */
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
 //********************************************************************
 //  Keyboard.java       Author: Lewis and Loftus
 import java.util.StringTokenizer;

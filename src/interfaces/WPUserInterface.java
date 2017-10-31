@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import model.WPPostMeta;
 import model.WPUser;
 
 /**
